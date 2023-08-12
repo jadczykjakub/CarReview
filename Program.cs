@@ -1,14 +1,12 @@
 using CarReview;
 using CarReview.Data;
 using CarReview.Interfaces;
-using CarReview.Models;
 using CarReview.Repository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
 builder.Services.AddTransient<Seed>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

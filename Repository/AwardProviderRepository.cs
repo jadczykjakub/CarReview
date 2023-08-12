@@ -4,8 +4,6 @@ using CarReview.Models;
 
 namespace CarReview.Repository
 {
-
-
     public class AwardProviderRepository : IAwardProviderRepository
     {
         private readonly DataContext _context;
@@ -28,6 +26,38 @@ namespace CarReview.Repository
         public IEnumerable<AwardProvider> GetAwardProviders()
         {
             return _context.AwardProviders.ToList();
+        }
+
+        public bool CreateAwardProvider(AwardProvider awardProvider)
+        {
+            _context.AwardProviders.Add(awardProvider);
+
+            return Save();
+        }
+
+        public bool Save()
+        {
+            var saved = _context.SaveChanges();
+
+            return saved > 0 ? true : false;
+        }
+
+        public bool UpdateAwardProvider(AwardProvider awardProvider)
+        {
+            _context.AwardProviders.Update(awardProvider);
+            return Save();
+        }
+
+        public bool AwardProviderExist(int id)
+        {
+            return _context.AwardProviders.Any(ap => ap.AwardProviderId == id);
+        }
+
+        public bool DeleteAwardProvider(AwardProvider awardProvider)
+        {
+            _context.AwardProviders.Remove(awardProvider);
+
+            return Save();
         }
     }
 }

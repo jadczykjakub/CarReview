@@ -8,5 +8,9 @@ namespace CarReview.Interfaces
         Country GetCountry(int id);
         Country GetCountryByOwner(int id);
         bool CountryExists(int id);
+        bool CreateCountry(Country country);
+        bool UpdateCountry(Country country);
+        bool DeleteCountry(Country country);
+        bool Save();
     }
 }

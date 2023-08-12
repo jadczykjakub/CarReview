@@ -33,5 +33,29 @@ namespace CarReview.Repository
         {
             return _context.Owners.Where(o => o.OwnerId == id).Select(o => o.Country).FirstOrDefault();
         }
+
+        public bool CreateCountry(Country country)
+        {
+            _context.Add(country);
+            return Save();
+        }
+        public bool Save()
+        {
+            var saved = _context.SaveChanges();
+
+            return saved > 0 ? true : false;
+        }
+
+        public bool UpdateCountry(Country country)
+        {
+            _context.Countries.Update(country);
+            return Save();
+        }
+
+        public bool DeleteCountry(Country country)
+        {
+            _context.Countries.Remove(country);
+            return Save();
+        }
     }
 }
